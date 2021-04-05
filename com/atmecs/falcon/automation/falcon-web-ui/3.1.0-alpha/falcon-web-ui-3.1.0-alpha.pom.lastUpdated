@@ -1,0 +1,7 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Apr 01 16:47:52 IST 2021
+https\://repo.maven.apache.org/maven2/.lastUpdated=1617275788880
+@default-falcon-${falcon.repo.url}/.lastUpdated=1617275779518
+http\://10.10.10.150\:8081/nexus/content/repositories/falcon-dev/.lastUpdated=1617275872647
+${falcon.repo.url}/.error=Could not transfer artifact com.atmecs.falcon.automation\:falcon-web-ui\:pom\:3.1.0-alpha from/to falcon (${falcon.repo.url})\: Cannot access ${falcon.repo.url} with type default using the available connector factories\: AetherRepositoryConnectorFactory, BasicRepositoryConnectorFactory
+https\://repo.maven.apache.org/maven2/.error=

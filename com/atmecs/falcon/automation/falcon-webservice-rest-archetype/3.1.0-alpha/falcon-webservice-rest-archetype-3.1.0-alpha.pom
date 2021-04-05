@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.atmecs.falcon.automation</groupId>
+  <artifactId>falcon-webservice-rest-archetype</artifactId>
+  <version>3.1.0-alpha</version>
+  <packaging>maven-archetype</packaging>
+
+  <name>falcon-webservice-rest-archetype</name>
+  
+  <profiles>
+		<profile>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<distributionManagement>
+				<repository>
+					<id>falcon</id>
+					<name>falcon-repository</name>
+					<url>http://10.10.10.150:8081/nexus/content/repositories/falcon-dev</url>
+				</repository>
+			</distributionManagement>
+		</profile>
+	</profiles>
+
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.archetype</groupId>
+        <artifactId>archetype-packaging</artifactId>
+        <version>3.2.0</version>
+      </extension>
+    </extensions>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-archetype-plugin</artifactId>
+          <version>3.2.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <url>http://maven.apache.org</url>
+</project>

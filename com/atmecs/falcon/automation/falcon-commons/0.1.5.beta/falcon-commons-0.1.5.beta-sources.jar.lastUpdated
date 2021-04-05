@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Tue Sep 17 18:28:19 IST 2019
+https\://repo.maven.apache.org/maven2/.lastUpdated=1568725099547
+@default-falcon-${falcon.repo.url}/.lastUpdated=1568725098565
+${falcon.repo.url}/.error=Could not transfer artifact com.atmecs.falcon.automation\:falcon-commons\:jar\:sources\:0.1.5.beta from/to falcon (${falcon.repo.url})\: Cannot access ${falcon.repo.url} with type default using the available connector factories\: AetherRepositoryConnectorFactory, BasicRepositoryConnectorFactory
+https\://repo.maven.apache.org/maven2/.error=

@@ -1,0 +1,9 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Apr 01 16:53:30 IST 2021
+${release.repo.url}/.error=Could not transfer artifact com.atmecs.falcon.automation\:falcon-mobile-ui\:pom\:3.1.0-alpha from/to falcon-mobile (${release.repo.url})\: Cannot access ${release.repo.url} with type default using the available connector factories\: BasicRepositoryConnectorFactory
+https\://repo.maven.apache.org/maven2/.lastUpdated=1617276175784
+@default-falcon-${falcon.repo.url}/.lastUpdated=1617276174698
+http\://10.10.10.150\:8081/nexus/content/repositories/falcon-dev/.lastUpdated=1617276210379
+${falcon.repo.url}/.error=Could not transfer artifact com.atmecs.falcon.automation\:falcon-mobile-ui\:pom\:3.1.0-alpha from/to falcon (${falcon.repo.url})\: Cannot access ${falcon.repo.url} with type default using the available connector factories\: AetherRepositoryConnectorFactory, BasicRepositoryConnectorFactory
+https\://repo.maven.apache.org/maven2/.error=
+@default-falcon-mobile-${release.repo.url}/.lastUpdated=1617276208939

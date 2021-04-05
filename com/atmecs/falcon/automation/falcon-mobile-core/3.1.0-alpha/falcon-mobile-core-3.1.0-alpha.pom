@@ -1,0 +1,195 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.atmecs.falcon.automation</groupId>
+	<artifactId>falcon-mobile-core</artifactId>
+	<version>3.1.0-alpha</version>
+	<packaging>jar</packaging>
+
+	<properties>
+		<java-client-version>7.0.0</java-client-version>
+		<reflections-version>0.9.11</reflections-version>
+		<maven-jar-plugin-version>3.1.1</maven-jar-plugin-version>
+		<falcon.commons.version>3.1.0-alpha</falcon.commons.version>
+		<nexus-staging-maven-plugin-version>1.6.8</nexus-staging-maven-plugin-version>
+		<maven-surefire-plugin-version>2.22.2</maven-surefire-plugin-version>
+		<maven-source-plugin-version>3.1.0</maven-source-plugin-version>
+		<maven-gpg-plugin-version>1.6</maven-gpg-plugin-version>
+		<maven-assembly-plugin-version>3.1.1</maven-assembly-plugin-version>
+		<maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
+		<!-- Java-version to compile -->
+		<maven-compiler-source>1.8</maven-compiler-source>
+		<maven-compiler-target>1.8</maven-compiler-target>
+		<falcon.repo.deployurl>${falcon.repo.url}</falcon.repo.deployurl>
+		<falcon.repo.downloadurl>${falcon.repo.url}</falcon.repo.downloadurl>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>io.appium</groupId>
+			<artifactId>java-client</artifactId>
+			<version>${java-client-version}</version>
+		</dependency>
+	</dependencies>
+
+
+	<!-- To deploy the project into given URL or Path -->
+	<distributionManagement>
+		<repository>
+			<id>falcon</id>
+			<url>${falcon.repo.deployurl}</url>
+		</repository>
+	</distributionManagement>
+
+	<profiles>
+		<profile>
+			<id>falcon</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+
+		</profile>
+
+		<profile>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<!-- To download the dependency falcon-mobile-core project from Release 
+				repository -->
+			<repositories>
+				<repository>
+					<id>falcon</id>
+					<name>falcon</name>
+					<url>${falcon.repo.downloadurl}</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+				</repository>
+			</repositories>
+			<!-- falcon-mobile-core dependency for release version -->
+			<dependencies>
+				<!-- falcon-common dependency for release version -->
+				<dependency>
+					<groupId>com.atmecs.falcon.automation</groupId>
+					<artifactId>falcon-commons</artifactId>
+					<version>${falcon.commons.version}</version>
+				</dependency>
+				<dependency>
+					<groupId>com.relevantcodes</groupId>
+					<artifactId>extentreports</artifactId>
+					<version>2.41.2</version>
+				</dependency>
+			</dependencies>
+		</profile>
+
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.sonatype.plugins</groupId>
+						<artifactId>nexus-staging-maven-plugin</artifactId>
+						<version>${nexus-staging-maven-plugin-version}</version>
+						<extensions>true</extensions>
+						<configuration>
+							<serverId>ossrh</serverId>
+							<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+							<autoReleaseAfterClose>true</autoReleaseAfterClose>
+						</configuration>
+					</plugin>
+
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>${maven-surefire-plugin-version}</version>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>${maven-source-plugin-version}</version>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>test-jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>${maven-gpg-plugin-version}</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<version>${maven-assembly-plugin-version}</version>
+						<configuration>
+							<descriptorRefs>
+								<descriptorRef>jar-with-dependencies</descriptorRef>
+							</descriptorRefs>
+						</configuration>
+						<executions>
+							<execution>
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin-version}</version>
+				<configuration>
+					<source>${maven-compiler-source}</source>
+					<target>${maven-compiler-target}</target>
+				</configuration>
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${maven-jar-plugin-version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

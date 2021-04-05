@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.atmecs.falcon.archetype</groupId>
+  <artifactId>falcon-ui-archetype</artifactId>
+  <version>0.2.0</version>
+  <packaging>maven-archetype</packaging>
+
+  <name>falcon-web-archetype</name>
+  
+  <profiles>
+  
+  <profile>
+			<!-- <id>atmecs.falcon.release</id> -->
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<distributionManagement>
+				<repository>
+					<!-- <id>releases</id> <name>falcon</name> -->
+					<id>falcon</id>
+					<name>falcon</name>
+					<url>http://10.10.10.150:8081/nexus/content/repositories/falcon/</url>
+				</repository>
+			</distributionManagement>
+
+		</profile>
+  </profiles>
+
+  <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.archetype</groupId>
+        <artifactId>archetype-packaging</artifactId>
+        <version>2.4</version>
+      </extension>
+    </extensions>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-archetype-plugin</artifactId>
+          <version>2.4</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <url>http://maven.apache.org</url>
+</project>

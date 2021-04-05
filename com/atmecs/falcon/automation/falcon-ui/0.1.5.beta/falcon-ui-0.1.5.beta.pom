@@ -1,0 +1,103 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.atmecs.falcon.automation</groupId>
+	<artifactId>falcon-ui</artifactId>
+	<version>0.1.5.beta</version>
+
+	<properties>
+		<maven.compiler.plugin>3.5</maven.compiler.plugin>
+		<java.version>1.8</java.version>
+		<slf4j.version>1.7.7</slf4j.version>
+		<testng.version>6.9.9</testng.version>
+		<selenium.version>3.6.0</selenium.version>
+		<selenium.remotedriver.version>3.5.3</selenium.remotedriver.version>
+		<phantom.version>1.1.0</phantom.version>
+		<selenium.server.version>3.5.3</selenium.server.version>
+		<xml.api.version>1.4.01</xml.api.version>
+
+		<commons.staging.version>0.0.1-SNAPSHOT</commons.staging.version>
+		<commons.beta.version>1.0.BETA</commons.beta.version>
+		<commons.release.version>0.1.5.beta</commons.release.version>
+		<beta.repo.deployurl>${falcon.repo.url}</beta.repo.deployurl>
+		<release.repo.deployurl>${falcon.repo.url}</release.repo.deployurl>
+	</properties>
+
+	<profiles>
+
+
+		<profile>
+			<id>atmecs.falcon.release</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<!-- To deploy the project into given URL or Path -->
+			<distributionManagement>
+				<repository>
+				<!-- 	<id>releases</id>
+					<name>falcon</name> -->
+					<id>falcon</id>
+					<name>falcon</name>
+					<url>${release.repo.deployurl}</url>
+				</repository>
+			</distributionManagement>
+			<!-- To download the dependency commons project from Release repository -->
+			<repositories>
+				<repository>
+					<id>commons-release</id>
+					<name>Commons Release Repository</name>
+					<url>${release.repo.deployurl}</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+				</repository>
+			</repositories>
+			<!-- commons dependency for release version -->
+			<dependencies>
+				<dependency>
+					<groupId>com.atmecs.falcon.automation</groupId>
+					<artifactId>falcon-commons</artifactId>
+					<version>${commons.release.version}</version>
+				</dependency>
+			</dependencies>
+		</profile>
+	</profiles>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+
+		<!-- <dependency> <groupId>com.github.detro.ghostdriver</groupId> <artifactId>phantomjsdriver</artifactId> 
+			<version>${phantom.version}</version> </dependency> -->
+		<dependency>
+			<groupId>com.codeborne</groupId>
+			<artifactId>phantomjsdriver</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>com.atmecs.falcon.automation</groupId>
+			<artifactId>falcon-commons</artifactId>
+			<version>${commons.release.version}</version>
+		</dependency>
+	</dependencies>
+
+
+</project>
